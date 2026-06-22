@@ -1,0 +1,86 @@
+{
+  "id": "pf2e-drag-attach",
+  "title": "PF2e/SF2e Drag Attach",
+  "version": "#{VERSION}#",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14.360"
+  },
+  "esmodules": [
+    "scripts/pf2e-drag-attach.js"
+  ],
+  "styles": [
+    "styles/pf2e-drag-attach.css"
+  ],
+  "authors": [
+    {
+      "name": "kromko",
+      "flags": {}
+    }
+  ],
+  "flags": {
+    "canUpload": true,
+    "pf2e-feat-filter": {
+      "files": [
+        "pf2e-playtest-data",
+        "pf2e",
+        "sf2e",
+        "starfinder-field-test-for-pf2e"
+      ]
+    }
+  },
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json",
+      "flags": {}
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "lang/pl.json",
+      "flags": {}
+    }
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "pf2e",
+        "type": "system",
+        "manifest": "https://raw.githubusercontent.com/foundryvtt/pf2e/master/system.json",
+        "compatibility": {
+          "minimum": "8.2.0",
+          "verified": "8.2.0"
+        }
+      },
+      {
+        "id": "sf2e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "1.0.0",
+          "verified": "1.2.0"
+        }
+      }
+    ],
+    "requires": [
+      {
+        "id": "lib-wrapper",
+        "manifest": "https://github.com/ruipin/fvtt-lib-wrapper/releases/latest/download/module.json",
+        "type": "module",
+        "compatibility": {}
+      }
+    ]
+  },
+  "description": "<p>Small module to hide feats incompatible with a selected character.</p>",
+  "url": "#{URL}#",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#",
+  "changelog": "https://github.com/Cuingamehtar/fvtt-pf2e-feat-filter/blob/main/CHANGELOG.md"
+}
