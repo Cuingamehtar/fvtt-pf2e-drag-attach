@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 *.lock
+pf2e-drag-attach.js
+pf2e-drag-attach.js.map

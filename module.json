@@ -7,10 +7,10 @@
     "verified": "14.360"
   },
   "esmodules": [
-    "scripts/pf2e-drag-attach.js"
+    "pf2e-drag-attach.js"
   ],
   "styles": [
-    "styles/pf2e-drag-attach.css"
+    "pf2e-drag-attach.css"
   ],
   "authors": [
     {
@@ -18,34 +18,11 @@
       "flags": {}
     }
   ],
-  "flags": {
-    "canUpload": true,
-    "pf2e-feat-filter": {
-      "files": [
-        "pf2e-playtest-data",
-        "pf2e",
-        "sf2e",
-        "starfinder-field-test-for-pf2e"
-      ]
-    }
-  },
   "languages": [
     {
       "lang": "en",
       "name": "English",
       "path": "lang/en.json",
-      "flags": {}
-    },
-    {
-      "lang": "fr",
-      "name": "Français",
-      "path": "lang/fr.json",
-      "flags": {}
-    },
-    {
-      "lang": "pl",
-      "name": "Polski",
-      "path": "lang/pl.json",
       "flags": {}
     }
   ],
