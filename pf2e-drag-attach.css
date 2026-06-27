@@ -1,14 +1,63 @@
 .drag-attach-droppable {
     position: absolute;
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 100%;
+    right: 5px;
+    left: 5px;
+    top: 5px;
+    bottom: 5px;
     z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .drag-attach-droppable.allowed {
-    background-color: teal;
+    border: 2px dashed cyan;
+    background-color: #00808080;
+
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    p {
+        font-weight: bold;
+        color: #000;
+        text-shadow:
+            1px 1px 0 cyan,
+            -1px 1px 0 cyan,
+            -1px -1px 0 cyan,
+            1px -1px 0 cyan;
+    }
+}
+.drag-attach-droppable.unchecked {
+    border: 2px dashed yellow;
+    background-color: #ffff0080;
+
+    p {
+        font-weight: bold;
+        color: #000;
+        text-shadow:
+            1px 1px 0 yellow,
+            -1px 1px 0 yellow,
+            -1px -1px 0 yellow,
+            1px -1px 0 yellow;
+    }
+}
+
+.drag-attach-droppable.allowed.drag-over {
+    border-color: #4a90e2;
+    background-color: #4a90e280;
+    color: #4a90e2;
+    transform: scale(1.02);
+
+    p {
+        color: #000;
+        font-weight: bold;
+        text-shadow:
+            1px 1px 0 #4a90e2,
+            -1px 1px 0 #4a90e2,
+            -1px -1px 0 #4a90e2,
+            1px -1px 0 #4a90e2;
+    }
 }
 
 .drag-attach-droppable.denied {
@@ -19,6 +68,20 @@
         #ff000050 10px,
         #ff000050 15px
     );
+
+    border-radius: 8px;
+    border: 2px dashed #ff000050;
+    transition: all 0.3s ease;
+
+    p {
+        color: #000;
+        font-weight: bold;
+        text-shadow:
+            1px 1px 0 #ff0000,
+            -1px 1px 0 #ff0000,
+            -1px -1px 0 #ff0000,
+            1px -1px 0 #ff0000;
+    }
 }
 
 section:has(.drag-attach-droppable) {

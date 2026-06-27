@@ -1,5 +1,7 @@
 {
     "pf2e-drag-attach": {
-        "test": "Tets"
+        "drop": "Drop here to attach",
+        "drop-unchecked": "Drop here to attach (unchecked)",
+        "no-drop": "Usage type is incompatible"
     }
 }

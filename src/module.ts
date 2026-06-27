@@ -5,7 +5,7 @@ import {
     ItemSheetPF2e,
     PhysicalItemPF2e,
 } from "@7h3laughingman/pf2e-types";
-import { usages } from "./attachments-types";
+import { SpecialPredicates, usages } from "./attachments-types";
 
 let currentlyDragging = false;
 Hooks.on("renderActorSheetPF2e", (sheet) => {
@@ -36,6 +36,8 @@ function dragItem(attachment: ItemPF2e) {
     if (attachment.isOfType("physical")) {
         const usage = attachment._source.system.usage?.value;
         if (!usage) return;
+        const predicateSource = usages[usage] ?? [];
+        const always = predicateSource[0] === SpecialPredicates.Always;
         const predicate = new game.pf2e.Predicate(usages[usage] ?? []);
         const openWindows = Object.values(ui.windows).filter(
             (w): w is ItemSheetPF2e<PhysicalItemPF2e> =>
@@ -45,21 +47,39 @@ function dragItem(attachment: ItemPF2e) {
             return;
         }
         currentlyDragging = true;
-        for (const { item, form } of openWindows) {
+        for (const window of openWindows) {
+            const { item, form } = window;
             const options = customRollOptions(item);
-            const allowed = predicate.test(options);
+            const allowed = always || predicate.test(options);
             const n = document.createElement("div");
             n.classList.add(
                 "drag-attach-droppable",
                 allowed ? "allowed" : "denied",
             );
+            if (always) {
+                n.classList.add("unchecked");
+            }
+            const message = always
+                ? "drop-unchecked"
+                : allowed
+                  ? "drop"
+                  : "no-drop";
+
+            const p = document.createElement("p");
+            p.innerText = _loc(`pf2e-drag-attach.${message}`);
+            n.appendChild(p);
             if (allowed) {
-                n.addEventListener("dragover", (event) =>
-                    event.preventDefault(),
-                );
-                n.addEventListener("drop", (event) => {
+                n.addEventListener("dragover", (event) => {
                     event.preventDefault();
-                    item.attach(attachment);
+                    n.classList.add("drag-over");
+                });
+                n.addEventListener("dragleave", () => {
+                    n.classList.remove("drag-over");
+                });
+                n.addEventListener("drop", async (event) => {
+                    event.preventDefault();
+                    await item.attach(attachment);
+                    await window.render(true);
                 });
             }
             form.querySelector("section.sidebar")?.appendChild(n);

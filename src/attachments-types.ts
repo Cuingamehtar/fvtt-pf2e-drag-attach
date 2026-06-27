@@ -16,9 +16,14 @@ import {
     weapon,
 } from "./helpers";
 
-const never = ["never"];
-const always = [] as string[];
-const maybeNever = ["never"];
+export enum SpecialPredicates {
+    Always = "always",
+    Never = "never",
+}
+
+const never = [SpecialPredicates.Never];
+const always = [SpecialPredicates.Always];
+const maybeNever = [SpecialPredicates.Never];
 
 const banner = [{ or: [weapon, "item:type:shield"] }];
 
@@ -250,7 +255,7 @@ export const usages: Record<string, PredicateStatement[]> = {
     implanted: never,
     "installed-in-a-datapad": ["item:slug:datapad"],
     "mounted-on-a-tripod-or-bracket": [itemSlug("tripod")],
-    other: maybeNever,
+    other: always,
     "sewn-into-clothing": [{ or: [armor, equipment] }],
     "tattooed-on-the-body": never,
     touched: never,

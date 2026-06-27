@@ -62,6 +62,8 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        env:
+            foundry_token: ${{ secrets.PACKAGE_TOKEN }}
         permissions:
             contents: write
 
@@ -135,6 +137,7 @@ jobs:
                   body: ${{ github.event.release.body }}
 
             - name: Publish FoundryVTT Package
+              if: ${{ env.foundry_token != '' }}
               id: publish-to-foundry-website
               uses: cs96and/FoundryVTT-release-package@v1.0.3
               with:
