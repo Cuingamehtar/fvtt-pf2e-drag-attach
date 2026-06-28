@@ -2,6 +2,6 @@
     "pf2e-drag-attach": {
         "drop": "Drop here to attach",
         "drop-unchecked": "Drop here to attach (unchecked)",
-        "no-drop": "Usage type is incompatible"
+        "no-drop": "Can't attach: Usage type is incompatible"
     }
 }
