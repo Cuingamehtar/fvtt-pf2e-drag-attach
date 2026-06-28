@@ -46,18 +46,11 @@
         }
       }
     ],
-    "requires": [
-      {
-        "id": "lib-wrapper",
-        "manifest": "https://github.com/ruipin/fvtt-lib-wrapper/releases/latest/download/module.json",
-        "type": "module",
-        "compatibility": {}
-      }
-    ]
+    "requires": []
   },
   "description": "<p>Small module to hide feats incompatible with a selected character.</p>",
   "url": "#{URL}#",
   "manifest": "#{MANIFEST}#",
   "download": "#{DOWNLOAD}#",
-  "changelog": "https://github.com/Cuingamehtar/fvtt-pf2e-feat-filter/blob/main/CHANGELOG.md"
+  "changelog": "https://github.com/Cuingamehtar/fvtt-pf2e-drag-attach/blob/main/CHANGELOG.md"
 }
