@@ -5,7 +5,7 @@ import {
     ItemSheetPF2e,
     PhysicalItemPF2e,
 } from "@7h3laughingman/pf2e-types";
-import { SpecialPredicates, usages } from "./attachments-types";
+import { SpecialPredicates, traits, usages } from "./attachments-types";
 
 let currentlyDragging = false;
 Hooks.on("renderActorSheetPF2e", (sheet) => {
@@ -34,11 +34,15 @@ Hooks.on("renderActorSheetPF2e", (sheet) => {
 function dragItem(attachment: ItemPF2e) {
     if (!attachment) return;
     if (attachment.isOfType("physical")) {
-        const usage = attachment._source.system.usage?.value;
-        if (!usage) return;
-        const predicateSource = usages[usage] ?? [];
+        const predicateSource =
+            attachment._source.system.traits.value
+                .map((t) => traits[t])
+                .find((t) => t) ??
+            usages[attachment._source.system.usage?.value ?? ""];
+        if (typeof predicateSource === "undefined" || predicateSource === null)
+            return;
         const always = predicateSource[0] === SpecialPredicates.Always;
-        const predicate = new game.pf2e.Predicate(usages[usage] ?? []);
+        const predicate = new game.pf2e.Predicate(predicateSource);
         const openWindows = Object.values(ui.windows).filter(
             (w): w is ItemSheetPF2e<PhysicalItemPF2e> =>
                 isItemSheet(w) && w.item?.isOfType("physical"),
@@ -66,7 +70,7 @@ function dragItem(attachment: ItemPF2e) {
                   : "no-drop";
 
             const p = document.createElement("p");
-            p.innerText = _loc(`pf2e-drag-attach.${message}`);
+            p.innerHTML = _loc(`pf2e-drag-attach.${message}`);
             n.appendChild(p);
             if (allowed) {
                 n.addEventListener("dragover", (event) => {

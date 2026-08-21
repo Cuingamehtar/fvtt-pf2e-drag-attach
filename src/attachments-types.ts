@@ -1,4 +1,7 @@
-import type { PredicateStatement } from "@7h3laughingman/pf2e-types";
+import type {
+    PhysicalItemTrait,
+    PredicateStatement,
+} from "@7h3laughingman/pf2e-types";
 import {
     armor,
     attached,
@@ -21,7 +24,7 @@ export enum SpecialPredicates {
     Never = "never",
 }
 
-const never = [SpecialPredicates.Never];
+const never = [SpecialPredicates.Never, { not: SpecialPredicates.Never }];
 const always = [SpecialPredicates.Always];
 const maybeNever = [SpecialPredicates.Never];
 
@@ -297,3 +300,12 @@ export const usages: Record<string, PredicateStatement[]> = {
     "worn-and-attached-to-two-weapons": [weapon],
     "worn-under-armor": [armor],
 };
+
+export const traits: Partial<Record<PhysicalItemTrait, PredicateStatement[]>> =
+    {
+        attached: always,
+        "attached-to-crossbow-or-firearm": [
+            { or: [itemGroup("firearm"), itemBase("hand-crossbow")] },
+        ],
+        "attached-to-shield": [shield],
+    };
