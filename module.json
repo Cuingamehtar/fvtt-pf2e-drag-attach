@@ -48,7 +48,7 @@
     ],
     "requires": []
   },
-  "description": "<p>Small module to hide feats incompatible with a selected character.</p>",
+  "description": "<p>Small module to attach items by dragging them into other items' sheets.</p>",
   "url": "#{URL}#",
   "manifest": "#{MANIFEST}#",
   "download": "#{DOWNLOAD}#",
