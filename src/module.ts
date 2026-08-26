@@ -54,20 +54,35 @@ function dragItem(attachment: ItemPF2e) {
         for (const window of openWindows) {
             const { item, form } = window;
             const options = customRollOptions(item);
-            const allowed = always || predicate.test(options);
+
+            const { allowed, classes, message } = ((item) => {
+                if (item.id === attachment.id)
+                    return {
+                        allowed: false,
+                        classes: ["denied"],
+                        message: "same-item",
+                    };
+                if (always)
+                    return {
+                        allowed: true,
+                        classes: ["allowed", "unchecked"],
+                        message: "drop-unchecked",
+                    };
+                if (predicate.test(options))
+                    return {
+                        allowed: true,
+                        classes: ["allowed"],
+                        message: "drop",
+                    };
+                return {
+                    allowed: false,
+                    classes: ["denied"],
+                    message: "no-drop",
+                };
+            })(item);
+
             const n = document.createElement("div");
-            n.classList.add(
-                "drag-attach-droppable",
-                allowed ? "allowed" : "denied",
-            );
-            if (always) {
-                n.classList.add("unchecked");
-            }
-            const message = always
-                ? "drop-unchecked"
-                : allowed
-                  ? "drop"
-                  : "no-drop";
+            n.classList.add("drag-attach-droppable", ...classes);
 
             const p = document.createElement("p");
             p.innerHTML = _loc(`pf2e-drag-attach.${message}`);

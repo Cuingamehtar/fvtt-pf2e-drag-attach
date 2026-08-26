@@ -2,6 +2,7 @@
     "pf2e-drag-attach": {
         "drop": "<p>Drop here to attach</p>",
         "drop-unchecked": "<p>Drop here to attach</p><p>Usage is unchecked</p>",
-        "no-drop": "<p>Can't attach</p><p>Usage is incompatible</p>"
+        "no-drop": "<p>Can't attach</p><p>Usage is incompatible</p>",
+        "same-item": "<p>Can't attach</p><p>Same item</p>"
     }
 }
