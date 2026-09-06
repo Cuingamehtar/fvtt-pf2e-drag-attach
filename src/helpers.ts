@@ -49,7 +49,7 @@ export function hands(hands: 1 | 2) {
 }
 
 export const weapon = "item:type:weapon";
-export const armor = "item:type:armor";
+export const armor = { or: ["item:type:armor", "item:slug:bands-of-force"] };
 export const equipment = "item:type:equipment";
 export const shield = "item:type:shield";
 export const melee = "item:melee";
